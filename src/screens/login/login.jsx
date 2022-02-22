@@ -32,7 +32,7 @@ render(){return(
 
     <div className='grid'>
         <div>
-      
+        <h1 className="website-title">Black Box</h1>
         <form className='form'>
         <h2>LOGIN</h2>
         <h3>PAGE</h3>

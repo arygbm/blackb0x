@@ -59,6 +59,7 @@ render(){return(
     <div className='grid'>
         <div>
         <h1> Registration Page</h1>
+        <h1 className="website-title">Black Box</h1>
         <form onSubmit={this.handleSubmit}>
         <h2>ACCOUNT</h2>
         <h3>DETAILS</h3>

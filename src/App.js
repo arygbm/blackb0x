@@ -5,15 +5,16 @@ import Registration from './screens/registration/registraion';
 import firebase from 'firebase/compat/app'
 import Login from './screens/login/login';
 import ChangePass from './screens/changepassword/changepass';
-
+import Home from './screens/home/home';
+import Header from './components/header/header';
 function App() {
  
   return (
     <div className="App">
-       <h1>Black Box</h1>
+    
       
-   
-    <ChangePass/>
+ 
+      <Home/>
     </div>
   );
 }
