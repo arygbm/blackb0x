@@ -6,16 +6,22 @@ import firebase from 'firebase/compat/app'
 import Login from './screens/login/login';
 import ChangePass from './screens/changepassword/changepass';
 import Home from './screens/home/home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/header/header';
 function App() {
  
   return (
-    <div className="App">
-    
-      
- 
-      <Home/>
+    <BrowserRouter >
+    <div className='App'>
+    <Header/>
+    <Routes >
+      <Route path="/" element={<Home/>} />
+      <Route path="login" element={<Login/>} />
+      <Route path="register" element={<Registration/>} />
+    </Routes>
     </div>
+   
+  </BrowserRouter>
   );
 }
 

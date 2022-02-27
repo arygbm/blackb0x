@@ -6,10 +6,13 @@
  
  
 }
+.icon{
+    margin-right: 5px;
+}
 .header-title{
     color: #ecbe25;
     font-size: 2em;
-    
+    cursor: pointer;
 }
 ul{
     list-style-type: none;
@@ -21,7 +24,7 @@ li{
     display: inline;
     margin-right: 10px;
     font-size: 1.2em;
-    
+    cursor: pointer;
 }
 li:hover{
     color: #ecbe25;
@@ -30,5 +33,6 @@ li:hover{
     float: right;
 }
 .header-search{
-    margin-left: 20vw;
+    margin-left: 10vw;
+    
 }

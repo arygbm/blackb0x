@@ -12,7 +12,7 @@ img{
 
 }
 .grid{
-    padding:  3vh 20vw 20vh 20vw ;
+ 
         color: white;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -38,8 +38,7 @@ img{
     cursor: pointer;
 }
 .container-fixed{
-    position: fixed;
-    right: 0;
+ 
     padding-right: 6vw;
 }
 .toSignInButton{

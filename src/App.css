@@ -5,10 +5,9 @@
   font-family: 'Teko', sans-serif;
   margin: 0;
 }
-.App{
- 
-  background-color: #0a0a0a;
- 
+a{
+  text-decoration: none;
+  color: white;
 }
 
 .website-title{
@@ -38,4 +37,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #e49012; 
 
+}
+.App{
+ 
+  background-color: #0a0a0a;
+  padding:  3vh 5vw 20vh 5vw ;
 }

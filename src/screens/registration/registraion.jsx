@@ -3,7 +3,7 @@ import InputComponent from '../../components/input-component/input';
 import'./registration.css'
 import sideimage from  '../../assets/images/register-illustration.png';
 import {auth,} from '../../firebase/firebase'
-
+import {Link, Navigate} from 'react-router-dom'
 
 class Registration extends React.Component{
 
@@ -26,30 +26,42 @@ class Registration extends React.Component{
 
 
   handleChange = async(event) => {
-
+    
     await this.setState({ [event.target.name]: event.target.value });
     console.log(event.target.name+' '+event.target.value + ' state: '+this.state[event.target.name])
   
   };
   handleSubmit =  async(event) => {
-    console.log(this.state.email);
-    console.log(this.state.confirmPassword);
-    console.log(this.state.password);
-    console.log(this.state.displayName); 
-  await  auth.createUserWithEmailAndPassword(this.state.email, this.state.spassword)
-    .then((userCredential) => {
-      // Signed in 
-     console.log('signed in: ', userCredential)
 
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      console.log(errorCode)
-      console.log(errorMessage)
-    });
-   console.log('ended')
+  
+
+
+    event.preventDefault();
+    console.log(this.state.email + ' in submit');
+    console.log(this.state.confirmPassword + ' in submit');
+    console.log(this.state.password + ' in submit');
+    console.log(this.state.displayName + ' in submit'); 
+    const { displayName, email, password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      alert("password dont match");
+      return;
+    }
+ 
+    try {
+      console.log(email+ 'in try catch')
+      console.log(password+ 'in try catch')
+      const { user } = await auth.createUserWithEmailAndPassword(
+       
+        email,
+        password
+      );
+      console.log(auth.getCurrentUser)
+     console.log(user)
+   
+    } catch (error) {
+      console.error(error);
+    }
+   
   }
 render(){return(
 
@@ -58,8 +70,8 @@ render(){return(
 
     <div className='grid'>
         <div>
-        <h1> Registration Page</h1>
-        <h1 className="website-title">Black Box</h1>
+  
+      
         <form onSubmit={this.handleSubmit}>
         <h2>ACCOUNT</h2>
         <h3>DETAILS</h3>
@@ -84,10 +96,14 @@ render(){return(
         </div>
         <div>
         
-        <div className='container-fixed'>
+        <div >
             
         <img src={sideimage} alt='register illustration' />
+        <Link to='/login'>
+
         <h1 className='toSignInButton'>Already have an acccount? Sign in</h1>
+        </Link>
+       
         </div>
         </div>
        
