@@ -4,7 +4,8 @@ import'./registration.css'
 import sideimage from  '../../assets/images/register-illustration.png';
 import {auth,} from '../../firebase/firebase'
 import {Link, Navigate} from 'react-router-dom'
-
+import {AiFillCheckCircle, AiOutlineCheckCircle} from 'react-icons/ai'
+import S from 'string';
 class Registration extends React.Component{
 
  
@@ -17,7 +18,16 @@ class Registration extends React.Component{
       password: '',
       confirmPassword: '',
       displayName: '',
-
+      showPasswordRequirements: false,
+      passwordChecksPassed: 0,
+      isUpper: false,
+      isLower: false,
+      isNotContainFirstName: false,
+      isNotContainLastName: false,
+      isGreaterThan8: false,
+      isContainSymbol: false,
+      isContainsFromDictionary:true,
+      isNumeric: false,
     }
   }
 
@@ -29,7 +39,52 @@ class Registration extends React.Component{
     
     await this.setState({ [event.target.name]: event.target.value });
     console.log(event.target.name+' '+event.target.value + ' state: '+this.state[event.target.name])
-  
+    
+   if(event.target.name ==='password'){
+    console.log(event.target.value)
+    if(event.target.value.length === 8){
+      this.setState({isGreaterThan8isGreaterThan8: true})
+      console.log(this.state)
+    }
+    else if(!S(event.target.value).contains('Dirian')){
+      this.setState({isNotContainFirstName: true})
+      console.log(this.state)
+    }
+   else if(!S(event.target.value).contains('Dirian')){
+      this.setState({isNotContainFirstName: false})
+      console.log(this.state)
+    }
+   
+
+
+
+    else if(!S(event.target.value).contains('Powell')){
+      this.setState({isNotContainLastName: true})
+      console.log(this.state)
+    }
+    else if(S(event.target.value).contains('Powell')){
+      this.setState({isNotContainLastName: false})
+      console.log(this.state)
+    }
+
+
+    else if(S(event.target.value).isUpper){
+      this.setState({isUpper: true})
+      console.log(this.state)
+    }
+    else if(S(event.target.value).isLower){
+      this.setState({isLower: true})
+      console.log(this.state)
+    }
+    else if(S(event.target.value).contains(1 || 2 ||3||4||5||6||7||8||9||0)){
+      this.setState({isNumeric: true})
+      console.log(this.state)
+      
+    
+    }
+
+
+   }
   };
   handleSubmit =  async(event) => {
 
@@ -63,6 +118,15 @@ class Registration extends React.Component{
     }
    
   }
+
+handleFocusOnPassword = () => (
+  this.setState({showPasswordRequirements: true})
+)
+
+handleEscapePassword = () => {
+  this.setState({showPasswordRequirements: false})
+}
+
 render(){return(
 
     
@@ -72,12 +136,31 @@ render(){return(
         <div>
   
       
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={ (this.state.passwordChecksPassed === 8)? this.handleSubmit: null}>
         <h2>ACCOUNT</h2>
         <h3>DETAILS</h3>
         <div className='container'>
         <InputComponent label={'email'} placeholder={'i.e. JonnJonzz@email.com'} name={'email'} type={'email'} id={'email'} onChange={this.handleChange} value={this.email}/>
-        <InputComponent label={'password'} placeholder={'Jonn#191281'} name={'password'} type={'password'} id={'password'} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" onChange={this.handleChange} value={this.password}/>
+        <InputComponent onChange={this.handleChange} onBlur={this.handleEscapePassword} label={'password'} placeholder={'Jonn#191281'} onFocus={this.handleFocusOnPassword}  name={'password'} type={'password'} id={'password'}    value={this.password}/>
+       
+        {this.state.showPasswordRequirements? 
+           <div>
+           <progress value={this.state.passwordChecksPassed} max="8"> 32% </progress>
+           <ul>
+             <li> {this.state.isUpper? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Contains capital letters</li><br/>
+             <li>{this.state.isLower? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Contains non-capital letters</li><br/>
+             <li>{this.state.isContainSymbol? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Contains symbols</li><br/>
+             <li>{this.state.isNumeric? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>}Contains numbers</li><br/>
+             <li>{this.state.isNotContainFirstName? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Must not contain first name</li><br/>
+             <li>{this.state.isNotContainLastName? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Must not contain last name</li><br/>
+             <li>{this.state.isGreaterThan8isGreaterThan8? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>}More than 8 characters long</li><br/>
+             <li>{this.state.isContainsFromDictionary? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Doest not contain a word from dictionary</li><br/>
+           </ul>
+           </div>  
+           :
+           null
+      }
+       
         <InputComponent label={'confirm password'} placeholder={'confirm password must match initial password input'} name={'confirmPassword'} type={'password'} id={'confirm-password'} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" onChange={this.handleChange} value={this.confirmPassword}/>
         </div>
        
