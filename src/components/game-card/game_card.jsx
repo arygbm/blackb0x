@@ -1,11 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './game_card.css'
 
-const GameCard = ({gameName,gameIMG,gameReleased, gameGenre}) => (
-    <div className='game-card'>
+const GameCard = ({gameName,gameIMG,gameReleased, gameGenre, gameData}) => (
+ 
+    <div className='game-card' >
         <div>
         <img src={gameIMG} alt={gameName + ' name'}  className='thumbnail'/>
-
+        {console.log(gameData)}
         <div >
        
         </div>
@@ -23,6 +25,7 @@ const GameCard = ({gameName,gameIMG,gameReleased, gameGenre}) => (
             
             {gameGenre}
         </h5>
+        <Link to ='/game'>
         <div className='learn-more-button'>
             <h5 className='learn-more-text'>
                 Learn more
@@ -30,6 +33,8 @@ const GameCard = ({gameName,gameIMG,gameReleased, gameGenre}) => (
             </h5>
         </div>
 
+        </Link>
+        
         </div>
 
       

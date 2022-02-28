@@ -1,12 +1,12 @@
 import React from 'react'
 import InputComponent from '../../components/input-component/input';
-import'./login.css'
+import'./login.css';
 import sideimage from  '../../assets/images/login-illustration.png';
-
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { render } from '@testing-library/react';
-import {Link } from 'react-router-dom'
-import {auth,} from '../../firebase/firebase'
+// import { getAuth} from "firebase/auth";
+// import { render } from '@testing-library/react';
+import {Link } from 'react-router-dom';
+import {auth, gettingAuth} from '../../firebase/firebase';
+import {Navigate} from 'react-router-dom'
 
 class Login extends React.Component{
 
@@ -16,7 +16,9 @@ class Login extends React.Component{
        
           email: "",
           password: "",
-         
+          notRoute: false,
+          loginAttempts: 3,
+          isDisabled: false,
         };
       }
 
@@ -29,18 +31,36 @@ class Login extends React.Component{
           
           };
 
-      handleSubmit = async (event) => {
+  
+          handleSubmit = async (event) => {
             event.preventDefault();
+            if(this.state.loginAttempts > 0){
             const { email, password } = this.state;
             try {
               await auth.signInWithEmailAndPassword(email, password);
-              console.log(auth.getCurrentUser)
-              this.setState({ email: "", password: "" });
+              const user = auth.currentUser
+              if(user){
+                this.setState({ email: "", password: "" });
+                this.setState({notRoute: true});
+              }
+
+
             } catch (error) {
-              console.log(error);
+              this.setState((prevState)=>({loginAttempts: prevState.loginAttempts-1}));
+              alert("Login Failed. Please try again.");
+
             }
             this.setState({ email: "", password: "" });
-          };
+          }else{
+            this.setState({isDisabled: true});
+                // Lock Login Button for 5 minutes and add 3 again to loginAttempts variable
+                setTimeout(()=> {
+                    this.setState({isDisabled: false})
+                    this.setState({loginAttempts: 3})
+                }, 30000);
+                alert("Too many failed attempts, try again after 5 minutes.");
+          }
+      };
         
 
 render(){return(
@@ -50,7 +70,7 @@ render(){return(
 
     <div className='grid'>
         <div>
-       
+        {this.state.notRoute && <Navigate to = '/' replace = {true}/>}
         <form  onSubmit={this.handleSubmit}>
         <h2>LOGIN</h2>
         <h3>PAGE</h3>
@@ -63,7 +83,7 @@ render(){return(
       
    
 
-        <input type={'submit'} className='submit' value={'Register'}/>
+        <input type={'submit'} className='submit' value={'Login'} disabled = {this.state.isDisabled} />
         </form>
         </div>
         <div>

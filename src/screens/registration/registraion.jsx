@@ -18,12 +18,14 @@ class Registration extends React.Component{
       password: '',
       confirmPassword: '',
       displayName: '',
+      firstName: '',
+      lastName: '',
       showPasswordRequirements: false,
       passwordChecksPassed: 0,
       isUpper: false,
       isLower: false,
-      isNotContainFirstName: false,
-      isNotContainLastName: false,
+      isNotContainFirstName: true,
+      isNotContainLastName: true,
       isGreaterThan8: false,
       isContainSymbol: false,
       isContainsFromDictionary:true,
@@ -38,49 +40,59 @@ class Registration extends React.Component{
   handleChange = async(event) => {
     
     await this.setState({ [event.target.name]: event.target.value });
-    console.log(event.target.name+' '+event.target.value + ' state: '+this.state[event.target.name])
+    // console.log(event.target.name+' '+event.target.value + ' state: '+this.state[event.target.name])
     
    if(event.target.name ==='password'){
     console.log(event.target.value)
     if(event.target.value.length === 8){
       this.setState({isGreaterThan8isGreaterThan8: true})
-      console.log(this.state)
+      // console.log(this.state)
     }
-    else if(!S(event.target.value).contains('Dirian')){
+    if(!S(event.target.value.toUpperCase()).contains(this.state.firstName.toUpperCase())){
       this.setState({isNotContainFirstName: true})
-      console.log(this.state)
-    }
-   else if(!S(event.target.value).contains('Dirian')){
+      // console.log(this.state)
+    }else if(S(event.target.value.toUpperCase()).contains(this.state.firstName.toUpperCase())){
       this.setState({isNotContainFirstName: false})
-      console.log(this.state)
+      // console.log(this.state)
     }
-   
 
-
-
-    else if(!S(event.target.value).contains('Powell')){
+   if(!S(event.target.value.toLowerCase()).contains(this.state.lastName.toLowerCase())){
       this.setState({isNotContainLastName: true})
-      console.log(this.state)
-    }
-    else if(S(event.target.value).contains('Powell')){
+      // console.log(this.state)
+    }else if(S(event.target.value.toLowerCase()).contains(this.state.lastName.toLowerCase())){
       this.setState({isNotContainLastName: false})
-      console.log(this.state)
+      // console.log(this.state)
+    }
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+    if(specialChars.test(event.target.value)){
+      this.setState({isContainSymbol: true})
+    }else if(!specialChars.test(event.target.value)){
+      this.setState({isContainSymbol: false})
     }
 
+    let uCheck = false;
+    let lCheck = false;
 
-    else if(S(event.target.value).isUpper){
-      this.setState({isUpper: true})
-      console.log(this.state)
+    for(let check = 0; check < event.target.value.length; check++ ){
+      if (S(event.target.value[check]).isUpper()){
+        uCheck = true;
+      }
+
+      if (S(event.target.value[check]).isLower()){
+        lCheck = true;
+      }
     }
-    else if(S(event.target.value).isLower){
-      this.setState({isLower: true})
-      console.log(this.state)
-    }
-    else if(S(event.target.value).contains(1 || 2 ||3||4||5||6||7||8||9||0)){
+
+    !uCheck?this.setState({isUpper: false}):this.setState({isUpper: true})
+    !lCheck?this.setState({isLower: false}):this.setState({isLower: true})
+
+
+    if(S(event.target.value).contains(1||2||3||4||5||6||7||8||9||0)){
       this.setState({isNumeric: true})
-      console.log(this.state)
-      
-    
+      // console.log(this.state)
+    }else if(!S(event.target.value).contains(1||2||3||4||5||6||7||8||9||0)){
+      this.setState({isNumeric: false})
     }
 
 
@@ -151,8 +163,8 @@ render(){return(
              <li>{this.state.isLower? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Contains non-capital letters</li><br/>
              <li>{this.state.isContainSymbol? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Contains symbols</li><br/>
              <li>{this.state.isNumeric? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>}Contains numbers</li><br/>
-             <li>{this.state.isNotContainFirstName? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Must not contain first name</li><br/>
-             <li>{this.state.isNotContainLastName? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Must not contain last name</li><br/>
+             <li>{this.state.isNotContainFirstName? <AiFillCheckCircle className='icon'/>:<AiOutlineCheckCircle className='icon'/> } Must not contain first name</li><br/>
+             <li>{this.state.isNotContainLastName? <AiFillCheckCircle className='icon'/>: <AiOutlineCheckCircle className='icon'/> } Must not contain last name</li><br/>
              <li>{this.state.isGreaterThan8isGreaterThan8? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>}More than 8 characters long</li><br/>
              <li>{this.state.isContainsFromDictionary? <AiFillCheckCircle className='icon'/> : <AiOutlineCheckCircle className='icon'/>} Doest not contain a word from dictionary</li><br/>
            </ul>
@@ -167,9 +179,9 @@ render(){return(
         <h2>PERSONAL</h2>
         <h3>INFORMATION</h3>
         <div className='container'>
-        <InputComponent label={'display name'} placeholder={'i.e. The07thBam'} name={'displayName'} type={'text'} id={'display-name'} onChange={this.handleChange} value={this.displayName}/>
-        <InputComponent label={'first name'} placeholder={'i.e. Jonn'} name={'first-name'} type={'text'} id={'first-name'}/>
-        <InputComponent label={'last name'} placeholder={'i.e. Jonzz'} name={'last-name'} type={'text'} id={'last-name'}/>
+        <InputComponent label={'display name'} placeholder={'i.e. The07thBam'} name={'displayName'} type={'text'} id={'displayName'} onChange={this.handleChange} value={this.displayName}/>
+        <InputComponent label={'first name'} placeholder={'i.e. Jonn'} name={'firstName'} type={'text'} id={'firstName'} onChange={this.handleChange} value={this.firstName}/>
+        <InputComponent label={'last name'} placeholder={'i.e. Jonzz'} name={'lastName'} type={'text'} id={'lastName'} onChange={this.handleChange} value={this.lastName}/>
         <InputComponent label={'contact number'} placeholder={'i.e. 092398179763'} name={'contact-number'} type={'number'} id={'contact-number'} />
         </div>
    
