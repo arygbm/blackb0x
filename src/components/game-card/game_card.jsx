@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './game_card.css'
 
-const GameCard = ({gameName,gameIMG,gameReleased, gameGenre, gameData}) => (
+const GameCard = ({gameName,gameIMG,gameReleased, gameGenre, gameData}) =>{ 
+    let navigate = useNavigate();
+    return(
  
     <div className='game-card' >
         <div>
@@ -25,20 +28,24 @@ const GameCard = ({gameName,gameIMG,gameReleased, gameGenre, gameData}) => (
             
             {gameGenre}
         </h5>
-        <Link to ='/game'>
-        <div className='learn-more-button'>
+        
+        <div className='learn-more-button' onClick={
+            ()=>{
+                navigate(`/game/${gameData.id}`, {state:gameData})
+            }
+        } >
             <h5 className='learn-more-text'>
                 Learn more
             
             </h5>
         </div>
 
-        </Link>
+     
         
         </div>
 
       
     </div>
-)
+)}
 
 export default GameCard

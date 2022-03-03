@@ -23,12 +23,13 @@
     float: right;
     border-radius: 5px;
     position: relative;
-
+    cursor: pointer;
    width: 50%;
     
 }
 .learn-more-text{
    color: #171717,
+   
 }
 .card-title{
     color: #e8b305;
