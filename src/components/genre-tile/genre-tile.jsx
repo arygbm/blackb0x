@@ -1,7 +1,11 @@
 import React from 'react'
 import './genre-tile.css'
 import actionIcon from '../../assets/images/action-icon.png'
-const GenreTile = ({genreName, genreIMG, gamesCount}) => (
+import {useNavigate} from 'react-router-dom'
+const GenreTile = ({genreName, genreIMG, gamesCount}) => {
+    let navigate = useNavigate();
+
+    return(
     <div className='genre-tile' 
     style={{
     backgroundImage: `url(${genreIMG})`,
@@ -16,7 +20,10 @@ const GenreTile = ({genreName, genreIMG, gamesCount}) => (
           
         <div className='genre-text'>
         <h1 className='genre-name'>{genreName}</h1>
-        <div className='explore-button'>
+        <div className='explore-button' onClick={
+            ()=>{
+                navigate(`/genre/${genreName}`, {state:genreName})
+            }}>
             <h5>Explore | {gamesCount}+ games</h5>
         </div>
         </div>
@@ -24,5 +31,5 @@ const GenreTile = ({genreName, genreIMG, gamesCount}) => (
       
        
     </div>
-)
+)}
 export default GenreTile

@@ -2,7 +2,7 @@
     margin: 20px 0;
     
     
-    color: white;
+    color: black;
  
  
 }
@@ -10,7 +10,7 @@
     margin-right: 5px;
 }
 .header-title{
-    color: #ecbe25;
+    color: black;
     font-size: 2em;
     cursor: pointer;
 }
@@ -25,9 +25,10 @@ li{
     margin-right: 10px;
     font-size: 1.2em;
     cursor: pointer;
+    color: black;
 }
 li:hover{
-    color: #ecbe25;
+    color: #1362ac;
 }
 .header-page-navigation{
     float: right;

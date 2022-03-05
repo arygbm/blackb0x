@@ -10,6 +10,9 @@
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
 }
 .hero-title{
     font-size: 5.8em;
@@ -19,12 +22,12 @@
 }
 .hero-subtitle{
     font-size: 5.8em;
-    color: #e49012;
+    color: #1362ac;
 }
 .hero-image{
     max-width: 30vw;
     margin-left: 15vw;
-    
+
 }
 .hero-text{
    

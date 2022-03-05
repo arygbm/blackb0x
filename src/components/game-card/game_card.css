@@ -2,10 +2,13 @@
     padding: 20px 20px;
     line-height: 20px;
    display: inline-block;
-   background-color:#171717;
-   margin: 20px 20px 0px 0 ;
+   background-color:rgb(209, 206, 206);
+   margin: 40px 40px 0px 0 ;
    border-radius: 10px;
    overflow: hidden;
+   box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 5px 22px -1px rgba(0,0,0,0.75);
 
 }
 .thumbnail{
@@ -17,7 +20,7 @@
     
 }
 .learn-more-button{
-  background-color: #e8b305;
+  background-color: #3794eb;
     padding: 5px;
     margin: 10px 0;
     float: right;
@@ -32,8 +35,8 @@
    
 }
 .card-title{
-    color: #e8b305;
+    color: #3794eb;
 }
 .card-subtitle{
-    color: white;
+    color: black;
 }

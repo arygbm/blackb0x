@@ -7,7 +7,16 @@ const GameCard = ({gameName,gameIMG,gameReleased, gameGenre, gameData}) =>{
     let navigate = useNavigate();
     return(
  
-    <div className='game-card' >
+    <div className='game-card' 
+    
+    style={{
+        backgroundImage: `url(${gameIMG})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundBlendMode:'lighten',
+        backgroundSize:'100%'
+           }}
+    >
         <div>
         <img src={gameIMG} alt={gameName + ' name'}  className='thumbnail'/>
         {console.log(gameData)}
