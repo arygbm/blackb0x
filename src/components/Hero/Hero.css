@@ -3,6 +3,7 @@
     padding: 20px 0px 20px  20px;
     border-radius: 10px;
     height: 40vh;
+    width: fit-content;
     margin-bottom: 30px;
     overflow: hidden;
     display: grid;

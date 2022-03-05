@@ -11,7 +11,7 @@ const GenrePage = () => {
 
         console.log('game data incoming')
 
-        axios.get(`http://localhost:8000/games/${location.state}`,
+        axios.get(`http://localhost:8000/games/genre/${location.state}`,
         {
         headers:{
             'Content-Type': 'application/json',
@@ -20,21 +20,27 @@ const GenrePage = () => {
         }
     ).then(res => {
         //the game library appears here and assign codes using res.data.result
+        console.log(res.data)
         setGamesOnGenre(res.data)
        
-        console.log(gamesOnGenre)
-      
+        
+    //   console.log(gamesOnGenre)
       }).catch(error =>console.log(error))
     },[])
+
+
+// useEffect = ( ()=> {
+//     console.log(gamesOnGenre)
+// },[gamesOnGenre])
    return( 
     <div>
   
 
-       <h3>{gamesOnGenre.name} Games </h3>
+       <h3>{location.state} Games </h3>
        <p>{gamesOnGenre.description}</p>
-       {/* {gamesOnGenre!=null?gamesOnGenre.map((game)=>(
+       {gamesOnGenre!=null?gamesOnGenre.map((game)=>(
            <GameCard gameName={game.name} gameIMG={game.background_image} gameReleased={game.released} gameData={game}/>
-       )):null} */}
+       )):null}
     </div>)
 
 }

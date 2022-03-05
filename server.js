@@ -77,10 +77,11 @@ app.get('/games/:game_id/achievements', (req, res) => {
     }).catch(error =>console.log(error))
 })
 
-app.get('/games/:genre', (req, res) => {
+app.get('/games/genre/:genre', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    axios.get(`https://api.rawg.io/api/games?key=${process.env.MY_API_KEY}&genres=${req.params.genre.toLowerCase}`,
+    
+    axios.get(`https://api.rawg.io/api/games?key=${process.env.MY_API_KEY}&genres=${req.params.genre.toLowerCase()}`,
     {
     headers:{
         'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ app.get('/games/:genre', (req, res) => {
     }
     ).then(response => {
         //the game library appears here and assign codes using res.data.result
-        res.json(response.data)
+        res.json(response.data.results)
     }).catch(error =>console.log(error))
 })
 
