@@ -1,0 +1,14 @@
+.achievement-tile{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+}
+.achievement-image{
+    max-width: 100px;
+    max-height: 100px;
+}
+.achievement-name{
+    display: inline-block;
+}

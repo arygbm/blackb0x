@@ -1,0 +1,70 @@
+.description{
+    color: white;
+}
+.game-header-image{
+    border-radius: 10px;
+    height: 50vh;
+    object-fit: cover;
+    object-position: 0 0px;
+    width: 90vw;
+  
+}
+.game-title{
+    color: white;
+    font-size: 4em;
+}
+.game-developers{
+    color: white;
+    font-size: 2em;
+}
+.reddit-card{
+    color: white;
+}
+.game-esrb_rating{
+    color: white;
+    font-size: 1.8em;
+}
+.game-metacritic{
+    color: white;
+    font-size: 1.8em;
+}
+.movie-list{
+    display: flex; 
+    flex-direction: row;
+    overflow: scroll;
+ /* overflow-X: hidden; */
+    overflow-y: hidden;
+}
+.screenshot-list{
+    display: flex; 
+    flex-direction: row;
+    overflow: scroll;
+ /* overflow-X: hidden; */
+    overflow-y: hidden;
+}
+.game-screenshot{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.game-movies{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+.install-button{
+    background-color:    #e49012; ;
+    font-size: 1.5em;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.genre-list{
+    /* display: flex; 
+    flex-direction: row;
+    overflow: scroll;
+    overflow-y: hidden; */
+}
