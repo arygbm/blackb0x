@@ -1,51 +1,31 @@
 {
-  "name": "blackbox",
-  "version": "0.1.0",
-  "private": true,
+  "name": "black_box_server",
+  "version": "1.0.0",
+  "description": "Server for the black-box-client app",
+  "main": "server.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\",",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amaiYume/blackbox.git"
+  },
+  "keywords": [
+    "AMAS"
+  ],
+  "author": "CS Group 10",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/amaiYume/blackbox/issues"
+  },
+  "homepage": "https://github.com/amaiYume/blackbox#readme",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "firebase": "^9.6.6",
-    "git": "^0.1.5",
-    "nodemon": "^2.0.15",
-    "react": "^17.0.2",
-    "react-carousel-minimal": "^1.4.1",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "^5.0.0",
-    "string": "^3.3.3",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "server": "nodemon server.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "nodemon": "^2.0.15"
+
   }
 }
